@@ -23,3 +23,4 @@ exec { 'startup':
 }
 
 package { 'postgresql': }
+package { 'git': }
