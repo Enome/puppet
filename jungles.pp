@@ -14,11 +14,6 @@ package { 'nodejs':
   require => Exec['apt-get update']
 }
 
-package { 'npm':
-  require => Exec['apt-get update']
-}
-
-
 exec { 'startup':
   command => '/usr/bin/curl https://raw.github.com/Enome/startup/master/bin/startup > /usr/local/bin/startup',
 }
