@@ -26,7 +26,13 @@ exec { 'startup executable':
 package { 'postgresql': }
 package { 'git': }
 package { 'build-essential': }
+package { 'ufw': }
 
 exec { 'iptables':
   command => '/sbin/iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000 -v'
+}
+
+exec { 'ufw-setup':
+  command => '/usr/sbin/ufw allow ssh && /usr/sbin/ufw allow ssh && /usr/sbin/ufw allow 80 && /usr/sbin/ufw --force enable',
+  require => Package['ufw']
 }
