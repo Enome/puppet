@@ -46,9 +46,7 @@ exec { 'iptables':
 
 # Firewall
 
-package { 'ufw':
-  require => Exec['iptables']
-}
+package { 'ufw': }
 
 exec { 'ufw-setup':
   command => '/usr/sbin/ufw allow ssh && /usr/sbin/ufw allow ssh && /usr/sbin/ufw allow 80 && /usr/sbin/ufw --force enable',
@@ -73,5 +71,5 @@ postgresql::db { 'jungles':
 # Fingerprint bitbucket
 
 exec { 'fingerprint':
-  command => '/usr/bin/ssh -o StrictHostKeyChecking=no bitbucket.org'
+  command => 'ssh -o StrictHostKeyChecking=no bitbucket.org'
 }
