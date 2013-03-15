@@ -46,12 +46,10 @@ exec { 'iptables':
 
 # Firewall
 
-package { 'ufw':
-  require => Exec['iptables']
-}
+package { 'ufw': }
 
 exec { 'ufw-setup':
-  command => '/usr/sbin/ufw allow ssh && /usr/sbin/ufw allow ssh && /usr/sbin/ufw allow 80 && /usr/sbin/ufw --force enable',
+  command => '/usr/sbin/ufw allow ssh && /usr/sbin/ufw allow ssh && /usr/sbin/ufw allow 80 && /usr/sbin/ufw allow 3000 && /usr/sbin/ufw --force enable',
   require => Package['ufw']
 }
 
