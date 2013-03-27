@@ -56,9 +56,12 @@ exec { 'ufw-setup':
 
 # Postgres
 
+package { 'libpq-dev': } # Needed for node pg module
+
 class {'postgresql::server': 
   listen => ['localhost',],
   acl => ['local all all trust', ],
+  require => Package['libpq-dev'],
 }
 
 postgresql::db { 'jungles':
